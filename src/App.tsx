@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect, useState } from "react";
+import Header from "./Components/Header";
+import ListPlayer from "./Components/ListPlayer/ListPlayer";
+import ModalMusic from "./Components/ModalMusic";
 
-function App() {
+const App = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {showModal && <ModalMusic setShowModal={setShowModal} />}
+      <div className="alert alert-info d-flex align-items-center justify-content-between">
+        <span>List music</span>
+        <button onClick={() => setShowModal(true)} className="btn btn-sm">
+          Add Music
+        </button>
+      </div>
+      <div className="player">
+        <Header />
+        <ListPlayer />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
